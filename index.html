@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <title>Anne Jan 40 jaar, dat vraagt om een feestje</title>
+    <meta content="Anne Jan 40 jaar" property="og:title">
+    <meta content="Anne Jan 40" property="og:site_name">
+    <meta content="https://annejan.com/40/" property="og:url">
+    <meta content="https://annejan.com/40/awesomespace-logo-1.2.png" property="og:image">
+    <meta content="De tering, is die lul al weer zo oud? En dan moeten we zeker nog naar dat stomme feestje komen ook? Lijkt me echt helemaal niks!"
+          property="og:description">
+    <meta content="product" property="og:type">
+    <meta content="product" name="twitter:card">
+    <meta content="@annejanbrouwer" name="twitter:site">
+    <meta content="Anne Jan 40 jaar" name="twitter:title">
+    <meta content="De tering, is die lul al weer zo oud? En dan moeten we zeker nog naar dat stomme feestje komen ook?"
+          name="twitter:description">
+    <meta content="https://annejan.com/40/" name="twitter:url">
+    <meta content="https://annejan.com/40/awesomespace-logo-1.2.png" name="twitter:image">
+    <style>
+        /**
+         * Birthday invite © 2019 Anne Jan Brouwer
+         *
+         * Rainbow gradient background by @nohoid
+         * CRT filter and ghosting http://aleclownes.com/2017/02/01/crt-display.html
+         * CRT shake effect by @rauldronca
+         */
+        @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        h1 {
+            color: #0078d7;
+            font-size: 3em;
+            animation: wobble 7s linear infinite;
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: 1em;
+            animation: 3.8s shake infinite alternate;
+            padding: 30px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            animation: 3.5s shake infinite alternate;
+            padding: 30px;
+        }
+
+        h4 {
+            font-size: .666em;
+            animation: 3.3s shake infinite alternate;
+            padding: 30px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            animation: 2s fadeout;
+            opacity: 0;
+        }
+
+        .awesomewrapper {
+            animation: 3.7s shake infinite alternate;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 0;
+            animation: 2.1s shake infinite alternate;
+            animation-delay: 12s;
+            filter: drop-shadow(5px 5px 5px #24cafe);
+            cursor: crosshair;
+        }
+
+        .awesomespace {
+            max-height: 85%;
+            max-width: 99%;
+            animation: wobble 17s linear infinite;
+        }
+
+        .anus {
+            transform: scaleX(-1);
+            position: fixed;
+            left: 20%;
+            bottom: -300px;
+            max-height: 300px;
+            animation: showup 60s ease infinite;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .credits {
+            display: block;
+            position: fixed;
+            width: 50%;
+            max-height: 50%;
+            left: 25%;
+            top: 25%;
+            background: linear-gradient(124deg, #24cafe, #cafe24, #dd00f3);
+            background-size: 1800% 1800%;
+            animation: rainbow 5s ease infinite;
+            padding: 30px;
+            opacity: 0;
+        }
+
+        .credits.hideable {
+            transition: opacity 2s ease-in;
+        }
+
+        .credits.visible {
+            opacity: 1;
+        }
+
+        .credits.invisible {
+            opacity: 0;
+        }
+
+        .credits ul {
+            padding-top: 5%;
+            list-style: none;
+            animation: 4.2s shake infinite alternate;
+        }
+
+        .credits ul li {
+            font-size: 1em;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+
+        .wrapper {
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+            background-size: 1800% 1800%;
+            animation: rainbow 13.37s ease infinite;
+            overflow: scroll;
+        }
+
+        .wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .crt::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 255;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        .crt::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 255;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .crt {
+            animation: textShadow 1.6s infinite;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes fadeout {
+            from { opacity: 1; }
+            to   { opacity: 0; }
+        }
+
+        @keyframes wobble {
+            0% {
+                transform: rotate(0deg);
+                filter: drop-shadow(0 0 15px #ff00de);
+            }
+            33% {
+                transform: rotate(-17deg);
+                filter: drop-shadow(-15px -15px 15px #ff00de);
+            }
+            66% {
+                transform: rotate(16deg);
+                filter: drop-shadow(15px 15px 15px #ff00de);
+            }
+            100% {
+                transform: rotate(0deg);
+                filter: drop-shadow(0 0 15px #ff00de);
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: 0 82%
+            }
+            50% {
+                background-position: 100% 19%
+            }
+            100% {
+                background-position: 0 82%
+            }
+        }
+
+        @keyframes showup {
+            0% {
+                bottom: -300px;
+                filter: drop-shadow(-5px -5px 5px #222);
+            }
+            50% {
+                bottom: -120px;
+                filter: drop-shadow(5px 5px 5px #222);
+            }
+            100% {
+                bottom: -300px;
+                filter: drop-shadow(-5px -5px 5px #222);
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.27861;
+            }
+            5% {
+                opacity: 0.34769;
+            }
+            10% {
+                opacity: 0.23604;
+            }
+            15% {
+                opacity: 0.90626;
+            }
+            20% {
+                opacity: 0.18128;
+            }
+            25% {
+                opacity: 0.83891;
+            }
+            30% {
+                opacity: 0.65583;
+            }
+            35% {
+                opacity: 0.67807;
+            }
+            40% {
+                opacity: 0.26559;
+            }
+            45% {
+                opacity: 0.84693;
+            }
+            50% {
+                opacity: 0.96019;
+            }
+            55% {
+                opacity: 0.08594;
+            }
+            60% {
+                opacity: 0.20313;
+            }
+            65% {
+                opacity: 0.71988;
+            }
+            70% {
+                opacity: 0.53455;
+            }
+            75% {
+                opacity: 0.37288;
+            }
+            80% {
+                opacity: 0.71428;
+            }
+            85% {
+                opacity: 0.70419;
+            }
+            90% {
+                opacity: 0.7003;
+            }
+            95% {
+                opacity: 0.36108;
+            }
+            100% {
+                opacity: 0.24387;
+            }
+        }
+
+        @keyframes textShadow {
+            0% {
+                text-shadow: 0.4389924193300864px 0 1px rgba(0, 30, 255, 0.5), -0.4389924193300864px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            5% {
+                text-shadow: 2.7928974010788217px 0 1px rgba(0, 30, 255, 0.5), -2.7928974010788217px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            10% {
+                text-shadow: 0.02956275843481219px 0 1px rgba(0, 30, 255, 0.5), -0.02956275843481219px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            15% {
+                text-shadow: 0.40218538552878136px 0 1px rgba(0, 30, 255, 0.5), -0.40218538552878136px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            20% {
+                text-shadow: 3.4794037899852017px 0 1px rgba(0, 30, 255, 0.5), -3.4794037899852017px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            25% {
+                text-shadow: 1.6125630401149584px 0 1px rgba(0, 30, 255, 0.5), -1.6125630401149584px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            30% {
+                text-shadow: 0.7015590085143956px 0 1px rgba(0, 30, 255, 0.5), -0.7015590085143956px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            35% {
+                text-shadow: 3.896914047650351px 0 1px rgba(0, 30, 255, 0.5), -3.896914047650351px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            40% {
+                text-shadow: 3.870905614848819px 0 1px rgba(0, 30, 255, 0.5), -3.870905614848819px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            45% {
+                text-shadow: 2.231056963361899px 0 1px rgba(0, 30, 255, 0.5), -2.231056963361899px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            50% {
+                text-shadow: 0.08084290417898504px 0 1px rgba(0, 30, 255, 0.5), -0.08084290417898504px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            55% {
+                text-shadow: 2.3758461067427543px 0 1px rgba(0, 30, 255, 0.5), -2.3758461067427543px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            60% {
+                text-shadow: 2.202193051050636px 0 1px rgba(0, 30, 255, 0.5), -2.202193051050636px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            65% {
+                text-shadow: 2.8638780614874975px 0 1px rgba(0, 30, 255, 0.5), -2.8638780614874975px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            70% {
+                text-shadow: 0.48874025155497314px 0 1px rgba(0, 30, 255, 0.5), -0.48874025155497314px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            75% {
+                text-shadow: 1.8948491305757957px 0 1px rgba(0, 30, 255, 0.5), -1.8948491305757957px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            80% {
+                text-shadow: 0.0833037308038857px 0 1px rgba(0, 30, 255, 0.5), -0.0833037308038857px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            85% {
+                text-shadow: 0.09769827255241735px 0 1px rgba(0, 30, 255, 0.5), -0.09769827255241735px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            90% {
+                text-shadow: 3.443339761481782px 0 1px rgba(0, 30, 255, 0.5), -3.443339761481782px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            95% {
+                text-shadow: 2.1841838852799786px 0 1px rgba(0, 30, 255, 0.5), -2.1841838852799786px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+            100% {
+                text-shadow: 2.6208764473832513px 0 1px rgba(0, 30, 255, 0.5), -2.6208764473832513px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: skewX(-15deg);
+            }
+            1% {
+                transform: skewX(15deg);
+            }
+            2% {
+                transform: skewX(-15deg);
+            }
+            3% {
+                transform: skewX(15deg);
+            }
+            4% {
+                transform: skewX(0deg);
+            }
+            100% {
+                transform: skewX(0deg);
+            }
+        }
+    </style>
+</head>
+<body class="crt" onclick="doAudio()">
+<div class="wrapper">
+    <img alt="Anus" class="anus" src="anus.png"/>
+    <canvas id="canvas"></canvas>
+    <h1>14 December 2019<br>Awesome Space</h1>
+    <h2>
+        Bij deze wil ik je graag uitnodigen om mijn 40e verjaardag te vieren in een gepaste omgeving, <a
+            href="https://awesomespace.nl">Awesome Space</a> Utrecht.<br>
+        Geen taart, wel pizza! Mocht je heel moeielijke dingen willen qua drinken, geef het aan mij cadeau, dan deel ik
+        het weer met jou ;-)<br>
+        Natuurlijk is eventuele aanhang ook meer dan welkom.<br>
+        <br>
+        Zaterdag 14 December 2019<br>
+        Marco Pololaan 8-10, Utrecht<br>
+        15:00 - ??:??
+    </h2>
+    <div class="awesomewrapper"><img alt="Awesome Space" class="awesomespace" src="awesomespace-logo-1.2.png"/></div>
+    <h3>Navigeer met <a href="https://awesomespace.nl/space-info/public-transport/">OV</a> of <a
+            href="https://awesomespace.nl/space-info/parking/">Auto</a></h3>
+    <div id="credits" class="credits hideable">
+        <a onclick="hideCredits()" class="close">X</a>
+        Birthday invite &copy; 2019 Anne Jan Brouwer
+        <ul>
+            <li>Rainbow gradient background <a href="https://codepen.io/nohoid/">Milan Nohejl</a></li>
+            <li>CRT filter and ghosting <a href="http://aleclownes.com/2017/02/01/crt-display.html">Alec Lownes</a></li>
+            <li>CRT shake effect <a href="https://codepen.io/rauldronca/">Dronca Raul</a></li>
+            <li>Fireworks <a href="https://codepen.io/programking/">Luke Shimkus</a> and <a href="https://codepen.io/jackrugile">Jack Rugile</a></li>
+            <li>Sine Scroll (broken) <a href="https://codepen.io/adelciotto/">Anthony Del Ciotto</a></li>
+            <li>Music from <a href="https://www.nihilore.com/synthwave">James Opie</a></li>
+            <li>Graphical EQ <a href="https://twitter.com/jake_albaugh">Jake Albaugh</a></li>
+        </ul>
+    </div>
+    <h4 class="footer"><a onclick="showCredits()">&copy; 2019 Anne Jan Brouwer</a></h4>
+    <div class="overlay"></div>
+</div>
+<script>
+  /**
+   * Birthday invite © 2019 Anne Jan Brouwer
+   *
+   * Fireworks by @programking and @jackrugile
+   * Sine Scroll (broken) from @adelciotto
+   * Music from http://www.nihilore.com/synthwave
+   * Graphical EQ by @jake_albaugh
+   */
+  const width = window.innerWidth,
+    height = window.innerHeight,
+    centerY = height / 2,
+    amplitude = height * 0.234,
+    speed = 151,
+    degrees = 123;
+
+  let canvas, ctx, charObjs,
+    once = false,
+    startTime = 0,
+    previousTime = 0,
+    pausedTime = 0,
+    paused = false,
+    fireworks = [],
+    particles = [],
+    hue = 120,
+    limiterTotal = 5,
+    limiterTick = 0,
+    timerTotal = 80,
+    timerTick = 0,
+    mousedown = false,
+    mx,
+    my;
+
+  const showCredits = () => {
+    const credits = document.getElementById('credits');
+    credits.style.display = 'block';
+    credits.className = 'credits hideable visible';
+  };
+
+  const hideCredits = () => {
+    const credits = document.getElementById('credits');
+    credits.className = 'credits hideable invisible';
+    setTimeout(() => {
+      const credits = document.getElementById('credits');
+      credits.style.display = 'none';
+    }, 2000);
+  };
+
+  const doAudio = () => {
+    if (once) {
+      return;
+    } else {
+      once = true;
+    }
+    const l = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+      ax = new AudioContext(),
+      a = ax.createAnalyser(),
+      r = new XMLHttpRequest(),
+      d = new Uint8Array(16);
+
+    a.fftSize = 32;
+
+    r.open("GET", "Artifice.mp3", true);
+    r.responseType = "arraybuffer";
+    r.onload = () => {
+      ax.decodeAudioData(r.response, onDecoded);
+      z();
+    };
+
+    const onDecoded = (buffer) => {
+      const b = ax.createBufferSource();
+      b.buffer = buffer;
+      b.connect(ax.destination);
+      b.connect(a);
+      b.start();
+    };
+
+    const z = () => {
+      setTimeout(z, 125);
+      a.getByteFrequencyData(d);
+      const s = [];
+      d.forEach(v => s.push(l[Math.floor((v / 255) * 8)]));
+      // location.hash =
+      document.title = s.join('');
+    };
+
+    r.send();
+  };
+
+  const random = (min, max) => {
+    return Math.random() * (max - min) + min;
+  };
+
+  const calculateDistance = (p1x, p1y, p2x, p2y) => {
+    return Math.sqrt(Math.pow(p1x - p2x, 2) + Math.pow(p1y - p2y, 2));
+  };
+
+  function Firework(sx, sy, tx, ty) {
+    this.x = sx;
+    this.y = sy;
+    this.sx = sx;
+    this.sy = sy;
+    this.tx = tx;
+    this.ty = ty;
+    this.distanceToTarget = calculateDistance(sx, sy, tx, ty);
+    this.distanceTraveled = 0;
+    this.coordinates = [];
+    this.coordinateCount = 3;
+    while (this.coordinateCount--) {
+      this.coordinates.push([this.x, this.y]);
+    }
+    this.angle = Math.atan2(ty - sy, tx - sx);
+    this.speed = 2;
+    this.acceleration = 1.05;
+    this.brightness = random(50, 70);
+    this.targetRadius = 1;
+  }
+
+  Firework.prototype.update = function (index) {
+    this.coordinates.pop();
+    this.coordinates.unshift([this.x, this.y]);
+
+    if (this.targetRadius < 8) {
+      this.targetRadius += 0.3;
+    } else {
+      this.targetRadius = 1;
+    }
+
+    this.speed *= this.acceleration;
+
+    let vx = Math.cos(this.angle) * this.speed,
+      vy = Math.sin(this.angle) * this.speed;
+    this.distanceTraveled = calculateDistance(this.sx, this.sy, this.x + vx, this.y + vy);
+
+    if (this.distanceTraveled >= this.distanceToTarget) {
+      createParticles(this.tx, this.ty);
+      fireworks.splice(index, 1);
+    } else {
+      this.x += vx;
+      this.y += vy;
+    }
+  };
+
+  Firework.prototype.draw = function () {
+    ctx.beginPath();
+    ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+    ctx.lineTo(this.x, this.y);
+    ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(this.tx, this.ty, this.targetRadius, 0, Math.PI * 2);
+    ctx.stroke();
+  };
+
+  function Particle(x, y) {
+    this.x = x;
+    this.y = y;
+    this.coordinates = [];
+    this.coordinateCount = 5;
+    while (this.coordinateCount--) {
+      this.coordinates.push([this.x, this.y]);
+    }
+    this.angle = random(0, Math.PI * 2);
+    this.speed = random(1, 10);
+    this.friction = 0.95;
+    this.gravity = 1;
+    this.hue = random(hue - 50, hue + 50);
+    this.brightness = random(50, 80);
+    this.alpha = 1;
+    this.decay = random(0.015, 0.03);
+  }
+
+  Particle.prototype.update = function (index) {
+    this.coordinates.pop();
+    this.coordinates.unshift([this.x, this.y]);
+    this.speed *= this.friction;
+    this.x += Math.cos(this.angle) * this.speed;
+    this.y += Math.sin(this.angle) * this.speed + this.gravity;
+    this.alpha -= this.decay;
+    if (this.alpha <= this.decay) {
+      particles.splice(index, 1);
+    }
+  };
+
+  Particle.prototype.draw = function () {
+    ctx.beginPath();
+    ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+    ctx.lineTo(this.x, this.y);
+    ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
+    ctx.stroke();
+  };
+
+  const createParticles = (x, y) => {
+    let particleCount = 30;
+    while (particleCount--) {
+      particles.push(new Particle(x, y));
+    }
+  };
+
+  const fire = () => {
+    hue = random(0, 360);
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalCompositeOperation = 'lighter';
+    let i = fireworks.length;
+    while (i--) {
+      fireworks[i].draw();
+      fireworks[i].update(i);
+    }
+    i = particles.length;
+    while (i--) {
+      particles[i].draw();
+      particles[i].update(i);
+    }
+    if (timerTick >= timerTotal) {
+      if (!mousedown) {
+        fireworks.push(new Firework(width / 2, height, random(0, width), random(0, height / 2)));
+        timerTick = 0;
+      }
+    } else {
+      timerTick++;
+    }
+    if (limiterTick >= limiterTotal) {
+      if (mousedown) {
+        fireworks.push(new Firework(width / 2, height, mx, my));
+        limiterTick = 0;
+      }
+    } else {
+      limiterTick++;
+    }
+  };
+
+  const start = () => {
+    canvas = document.getElementById('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    ctx = canvas.getContext('2d');
+
+    window.addEventListener('blur', () => {
+      if (!paused) {
+        paused = true;
+        pausedTime = Date.now() - startTime;
+      }
+    });
+    window.addEventListener('focus', () => {
+      if (paused) {
+        paused = false;
+        startTime = Date.now() - pausedTime;
+        animate();
+      }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      mx = e.pageX - canvas.offsetLeft;
+      my = e.pageY - canvas.offsetTop;
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      mousedown = true;
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      e.preventDefault();
+      mousedown = false;
+    });
+
+    charObjs = initScrollText('Anne Jan al weer 40, Feestje dus . .');
+
+    startTime = Date.now();
+    previousTime = getTime();
+    animate();
+  };
+
+  const initScrollText = (text) => {
+    ctx.font = 'bold 32px Courier New';
+
+    let position = 0;
+
+    return text.split('').map((char) => {
+      const width = ctx.measureText(char).width;
+      const charObj = {
+        char,
+        width,
+        position
+      };
+
+      position += width;
+      return charObj;
+    });
+  };
+
+  const getTime = () => {
+    return paused
+      ? pausedTime
+      : Date.now() - startTime;
+  };
+
+  const scrollText = (dt) => {
+    ctx.fillStyle = 'white';
+
+    charObjs.forEach((charObj) => {
+      charObj.position += dt * speed;
+
+      if (charObj.position > width) {
+        charObj.position = -charObj.width;
+      }
+
+      const y = Math.sin(charObj.position / degrees) * amplitude;
+
+      ctx.fillText(charObj.char, charObj.position, centerY + y);
+    });
+  };
+
+  const animate = () => {
+    const now = getTime();
+    const dt = (now - previousTime) * 0.001; // delta time in seconds.
+    previousTime = now;
+
+    ctx.clearRect(0, 0, width, height);
+
+    scrollText(dt);
+
+    fire();
+
+    if (!paused) {
+      requestAnimationFrame(animate);
+    }
+  };
+  start();
+</script>
+</body>
+</html>
