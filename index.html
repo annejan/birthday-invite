@@ -56,17 +56,6 @@
             padding: 30px;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            animation: 2s fadeout;
-            opacity: 0;
-        }
-
         .awesomewrapper {
             animation: 3.7s shake infinite alternate;
         }
@@ -86,7 +75,8 @@
 
         #canvas3d {
             animation: 1.9s shake infinite alternate;
-            animation-delay: 12s;
+            animation-delay: 8s;
+            filter: drop-shadow(5px 5px 5px #000033);
         }
 
         .awesomespace {
@@ -203,16 +193,6 @@
 
         .crt {
             animation: textShadow 1.6s infinite;
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
-        @keyframes fadeout {
-            from { opacity: 1; }
-            to   { opacity: 0; }
         }
 
         @keyframes wobble {
@@ -435,21 +415,22 @@
     <div class="awesomewrapper"><img alt="Awesome Space" class="awesomespace" src="awesomespace-logo-1.2.png"/></div>
     <h3>Navigeer met <a href="https://awesomespace.nl/space-info/public-transport/">OV</a> of <a
             href="https://awesomespace.nl/space-info/parking/">Auto</a></h3>
-    <div id="credits" class="credits hideable">
-        <a onclick="hideCredits()" class="close">X</a>
+    <div class="credits hideable" id="credits">
+        <a class="close" onclick="hideCredits()">X</a>
         Birthday invite &copy; 2019 Anne Jan Brouwer
         <ul>
-            <li>Rainbow gradient background <a href="https://codepen.io/nohoid/">Milan Nohejl</a></li>
+            <li>Rainbow gradient <a href="https://codepen.io/nohoid/">Milan Nohejl</a></li>
             <li>CRT filter and ghosting <a href="http://aleclownes.com/2017/02/01/crt-display.html">Alec Lownes</a></li>
             <li>CRT shake effect <a href="https://codepen.io/rauldronca/">Dronca Raul</a></li>
             <li>Fireworks <a href="https://codepen.io/programking/">Luke Shimkus</a> and <a href="https://codepen.io/jackrugile">Jack Rugile</a></li>
             <li>Sine Scroll (broken) <a href="https://codepen.io/adelciotto/">Anthony Del Ciotto</a></li>
             <li>Music from <a href="https://www.nihilore.com/synthwave">James Opie</a></li>
             <li>Graphical EQ <a href="https://twitter.com/jake_albaugh">Jake Albaugh</a></li>
+            <li>3D deFEEST logo <a href="https://ranzbak.nl">Ranzbak / deFEEST</a></li>
+            <li>WebGL Collada loader <a href="https://github.com/mrdoob/three.js/">Three.js</a></li>
         </ul>
     </div>
     <h4 class="footer"><a onclick="showCredits()">&copy; 2019 Anne Jan Brouwer</a></h4>
-    <div class="overlay"></div>
 </div>
 <script src="three.js"></script>
 <script>
@@ -461,7 +442,7 @@
    * Music from http://www.nihilore.com/synthwave
    * Graphical EQ by @jake_albaugh
    * 3D deFEEST logo by Ranzbak/deFEEST
-   *
+   * Three.JS https://github.com/mrdoob/three.js/
    */
   const width = window.innerWidth,
     height = window.innerHeight,
@@ -476,7 +457,8 @@
     renderer = new THREE.WebGLRenderer({ canvas: canvas3d, context: context }),
     light = new THREE.PointLight(0xfffff3, 0.8),
     ambientLight = new THREE.AmbientLight(0xaaaaaa),
-    loader = new THREE.ColladaLoader();
+    loader = new THREE.ColladaLoader(),
+    credits = document.getElementById('credits');
 
   let canvas, ctx, charObjs,
     once = false,
@@ -497,16 +479,13 @@
     deFEEST;
 
  const showCredits = () => {
-    const credits = document.getElementById('credits');
     credits.style.display = 'block';
     credits.className = 'credits hideable visible';
   };
 
   const hideCredits = () => {
-    const credits = document.getElementById('credits');
     credits.className = 'credits hideable invisible';
     setTimeout(() => {
-      const credits = document.getElementById('credits');
       credits.style.display = 'none';
     }, 2000);
   };
