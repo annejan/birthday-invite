@@ -84,6 +84,11 @@
             cursor: crosshair;
         }
 
+        #canvas3d {
+            animation: 1.9s shake infinite alternate;
+            animation-delay: 12s;
+        }
+
         .awesomespace {
             max-height: 85%;
             max-width: 99%;
@@ -413,6 +418,7 @@
 <body class="crt" onclick="doAudio()">
 <div class="wrapper">
     <img alt="Anus" class="anus" src="anus.png"/>
+    <canvas id="canvas3d"></canvas>
     <canvas id="canvas"></canvas>
     <h1>14 December 2019<br>Awesome Space</h1>
     <h2>
@@ -445,6 +451,7 @@
     <h4 class="footer"><a onclick="showCredits()">&copy; 2019 Anne Jan Brouwer</a></h4>
     <div class="overlay"></div>
 </div>
+<script src="three.js"></script>
 <script>
   /**
    * Birthday invite © 2019 Anne Jan Brouwer
@@ -453,13 +460,23 @@
    * Sine Scroll (broken) from @adelciotto
    * Music from http://www.nihilore.com/synthwave
    * Graphical EQ by @jake_albaugh
+   * 3D deFEEST logo by Ranzbak/deFEEST
+   *
    */
   const width = window.innerWidth,
     height = window.innerHeight,
     centerY = height / 2,
     amplitude = height * 0.234,
     speed = 151,
-    degrees = 123;
+    degrees = 123,
+    canvas3d = document.getElementById( 'canvas3d' ),
+    context = canvas3d.getContext( 'webgl2' ),
+    scene = new THREE.Scene(),
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ),
+    renderer = new THREE.WebGLRenderer({ canvas: canvas3d, context: context }),
+    light = new THREE.PointLight(0xfffff3, 0.8),
+    ambientLight = new THREE.AmbientLight(0xaaaaaa),
+    loader = new THREE.ColladaLoader();
 
   let canvas, ctx, charObjs,
     once = false,
@@ -476,9 +493,10 @@
     timerTick = 0,
     mousedown = false,
     mx,
-    my;
+    my,
+    deFEEST;
 
-  const showCredits = () => {
+ const showCredits = () => {
     const credits = document.getElementById('credits');
     credits.style.display = 'block';
     credits.className = 'credits hideable visible';
@@ -718,7 +736,18 @@
 
     startTime = Date.now();
     previousTime = getTime();
-    animate();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    light.position.set(-100, 200, 200);
+    scene.add(light);
+    scene.add(ambientLight);
+
+    loader.load("deFEEST.dae", function (result) {
+      deFEEST = result.scene;
+      scene.add(deFEEST);
+      animate();
+    });
+    camera.position.z = 5;
   };
 
   const initScrollText = (text) => {
@@ -765,15 +794,14 @@
     const now = getTime();
     const dt = (now - previousTime) * 0.001; // delta time in seconds.
     previousTime = now;
-
     ctx.clearRect(0, 0, width, height);
-
     scrollText(dt);
-
     fire();
-
     if (!paused) {
       requestAnimationFrame(animate);
+      deFEEST.rotation.x += 0.02;
+      deFEEST.rotation.y += 0.03;
+      renderer.render( scene, camera );
     }
   };
   start();
