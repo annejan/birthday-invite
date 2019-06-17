@@ -76,7 +76,7 @@
         #canvas3d {
             animation: 1.9s shake infinite alternate;
             animation-delay: 8s;
-            filter: drop-shadow(5px 5px 5px #000033) drop-shadow(15px 15px 15px #4B0082);
+            filter: drop-shadow(5px 5px 5px #000033) drop-shadow(20px 20px 15px #4B0082);
         }
 
         .awesomespace {
@@ -466,11 +466,11 @@
     amplitude = height * 0.234,
     speed = 151,
     degrees = 123,
-    canvas3d = document.getElementById( 'canvas3d' ),
-    context = canvas3d.getContext( 'webgl2' ),
+    canvas3d = document.getElementById('canvas3d'),
+    context = canvas3d.getContext('webgl2'),
     scene = new THREE.Scene(),
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ),
-    renderer = new THREE.WebGLRenderer({ canvas: canvas3d, context: context }),
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
+    renderer = new THREE.WebGLRenderer({canvas: canvas3d, context: context, alpha: true}),
     light = new THREE.PointLight(0xfffff3, 0.8),
     ambientLight = new THREE.AmbientLight(0xaaaaaa),
     loader = new THREE.ColladaLoader(),
