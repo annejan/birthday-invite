@@ -76,7 +76,7 @@
         #canvas3d {
             animation: 1.9s shake infinite alternate;
             animation-delay: 8s;
-            filter: drop-shadow(5px 5px 5px #000033);
+            filter: drop-shadow(5px 5px 5px #000033) drop-shadow(15px 15px 15px #4B0082);
         }
 
         .awesomespace {
@@ -101,7 +101,7 @@
         }
 
         .credits {
-            display: block;
+            display: none;
             position: fixed;
             width: 50%;
             max-height: 50%;
@@ -141,6 +141,10 @@
             right: 20px;
             top: 20px;
             cursor: pointer;
+        }
+
+        .hue {
+            animation: 10s rotateHue linear infinite;
         }
 
         .wrapper {
@@ -193,6 +197,18 @@
 
         .crt {
             animation: textShadow 1.6s infinite;
+        }
+
+        @keyframes rotateHue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
         }
 
         @keyframes wobble {
@@ -404,7 +420,7 @@
     <h2>
         Bij deze wil ik je graag uitnodigen om mijn 40e verjaardag te vieren in een gepaste omgeving, <a
             href="https://awesomespace.nl">Awesome Space</a> Utrecht.<br>
-        Geen taart, wel pizza! Mocht je heel moeielijke dingen willen qua drinken, geef het aan mij cadeau, dan deel ik
+        Geen taart, wel pizza! Mocht je heel moeilijke dingen willen qua drinken, geef het aan mij cadeau, dan deel ik
         het weer met jou ;-)<br>
         Natuurlijk is eventuele aanhang ook meer dan welkom.<br>
         <br>
@@ -480,7 +496,9 @@
 
  const showCredits = () => {
     credits.style.display = 'block';
-    credits.className = 'credits hideable visible';
+    setTimeout(() => {
+      credits.className = 'credits hideable visible';
+    }, 100);
   };
 
   const hideCredits = () => {
