@@ -5,8 +5,8 @@
     <title>Anne Jan 40 jaar, dat vraagt om een feestje</title>
     <meta content="Anne Jan 40 jaar" property="og:title">
     <meta content="Anne Jan 40" property="og:site_name">
-    <meta content="https://annejan.com/40/" property="og:url">
-    <meta content="https://annejan.com/40/awesomespace-logo-1.2.png" property="og:image">
+    <meta content="https://annejan.party/" property="og:url">
+    <meta content="https://annejan.party/awesomespace-logo-1.2.png" property="og:image">
     <meta content="De tering, is die lul al weer zo oud? En dan moeten we zeker nog naar dat stomme feestje komen ook? Lijkt me echt helemaal niks!"
           property="og:description">
     <meta content="product" property="og:type">
@@ -15,8 +15,10 @@
     <meta content="Anne Jan 40 jaar" name="twitter:title">
     <meta content="De tering, is die lul al weer zo oud? En dan moeten we zeker nog naar dat stomme feestje komen ook?"
           name="twitter:description">
-    <meta content="https://annejan.com/40/" name="twitter:url">
-    <meta content="https://annejan.com/40/awesomespace-logo-1.2.png" name="twitter:image">
+    <meta content="https://annejan.party/" name="twitter:url">
+    <meta content="https://annejan.party/awesomespace-logo-1.2.png" name="twitter:image">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.gif" type="image/gif">
     <style>
         /**
          * Birthday invite © 2019 Anne Jan Brouwer
@@ -428,6 +430,7 @@
         Marco Pololaan 8-10, Utrecht<br>
         18:00 - ??:??
     </h2>
+    <h3 id="countdown">Duurt lang!</h3>
     <div class="awesomewrapper"><img alt="Awesome Space" class="awesomespace" src="awesomespace-logo-1.2.png"/></div>
     <h3>Navigeer met <a href="https://awesomespace.nl/space-info/public-transport/">OV</a> of <a
             href="https://awesomespace.nl/space-info/parking/">Auto</a></h3>
@@ -444,11 +447,13 @@
             <li>Graphical EQ <a href="https://twitter.com/jake_albaugh">Jake Albaugh</a></li>
             <li>3D deFEEST logo <a href="https://ranzbak.nl">Ranzbak / deFEEST</a></li>
             <li>WebGL Collada loader <a href="https://github.com/mrdoob/three.js/">Three.js</a></li>
+            <li>Countdown timer <a href="http://countdownjs.org/">countdown.js</a></li>
         </ul>
     </div>
     <h4 class="footer"><a onclick="showCredits()">&copy; 2019 Anne Jan Brouwer</a></h4>
 </div>
 <script src="three.js"></script>
+<script src="countdown.min.js"></script>
 <script>
   /**
    * Birthday invite © 2019 Anne Jan Brouwer
@@ -474,7 +479,8 @@
     light = new THREE.PointLight(0xfffff3, 0.8),
     ambientLight = new THREE.AmbientLight(0xaaaaaa),
     loader = new THREE.ColladaLoader(),
-    credits = document.getElementById('credits');
+    credits = document.getElementById('credits'),
+    clock = document.getElementById('countdown');
 
   let canvas, ctx, charObjs,
     once = false,
@@ -801,6 +807,21 @@
       renderer.render( scene, camera );
     }
   };
+  countdown.setLabels(
+    '| seconde| minuut| uur| dagen',
+    '| seconden| minuten| uur| dagen|||',
+    ' en ');
+  countdown(
+    new Date('December 14, 2019 18:00:00'),
+    function(ts) {
+      if (ts.value >= 0) {
+        clock.innerHTML = 'Het is feest!!';
+      } else {
+        clock.innerHTML = ts.toHTML()
+      }
+    },
+    countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
+
   start();
 </script>
 </body>
